@@ -2,29 +2,26 @@ import pygame
 import random
 from constants import *
 
-def draw_red_spaceship(WIN):
+def draw_red_spaceship():
     WIN.blit(RED_SPACESHIP, (red.x, red.y))
 
 
-# TODO: handle out of screen problem
 def red_move():
 
     keys_pressed = pygame.key.get_pressed()
 
-    if keys_pressed[key_left]:
+    if keys_pressed[key_left] and red.x - VEL > 0:
         red.x -= VEL
 
-    if keys_pressed[key_right]:
+    if keys_pressed[key_right] and red.x + VEL + SPACESHIP_WIDTH < WIDTH:
         red.x += VEL
     
-    if keys_pressed[key_up]:
+    if keys_pressed[key_up] and red.y - VEL > 0:
         red.y -= VEL
     
-    if keys_pressed[key_down]:
+    if keys_pressed[key_down] and red.y + VEL + SPACESHIP_HEIGHT < HEIGHT:
         red.y += VEL
 
-    print(red.x)
-    print(red.y)
 
 
 
@@ -44,6 +41,3 @@ def red_move_random():
     
     if direction == 4 and red.y + VEL < HEIGHT: # down
         red.y += VEL
-
-    print(red.x)
-    print(red.y)
