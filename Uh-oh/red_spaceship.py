@@ -6,7 +6,7 @@ def draw_red_spaceship():
     WIN.blit(RED_SPACESHIP, (red.x, red.y))
 
 
-def red_move():
+def red_spaceship_move():
 
     keys_pressed = pygame.key.get_pressed()
 

@@ -37,12 +37,28 @@ def draw_bullets():
         pygame.draw.rect(WIN, RED_COLOR, bullet)
 
 def handle_bullet(one_bullet, remove_bullet_lst):
-    remove_alien_lst = []
+    remove_red_alien_lst = []
+    remove_yellow_alien_lst = []
+
+
+
     for red_aline in redAliens:
         if one_bullet.colliderect(red_aline):
             pygame.event.post(pygame.event.Event(RED_ALIEN_DIED))
-            print(1)
+            print("red")
             remove_bullet_lst.append(one_bullet)
-            remove_alien_lst.append(red_aline)
-    for remove_alien in remove_alien_lst:
+            remove_red_alien_lst.append(red_aline)
+    
+    for yellow_aline in yellowAliens:
+        if one_bullet.colliderect(yellow_aline):
+            pygame.event.post(pygame.event.Event(YELLOW_ALIEN_DIED))
+            print("yellow")
+            remove_bullet_lst.append(one_bullet)
+            remove_yellow_alien_lst.append(yellow_aline)
+
+
+
+    for remove_alien in remove_red_alien_lst:
         redAliens.remove(remove_alien)
+    for remove_alien in remove_yellow_alien_lst:
+        yellowAliens.remove(remove_alien)
