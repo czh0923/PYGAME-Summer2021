@@ -1,3 +1,6 @@
 # PYGAME-Summer2021
 
-Tutorial： https://www.youtube.com/watch?v=jO6qQDNa2UY
+Uh-oh: https://www.youtube.com/watch?v=jO6qQDNa2UY
+
+White-board: https://www.youtube.com/watch?v=N20eXcfyQ_4
+
