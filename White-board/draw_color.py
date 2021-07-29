@@ -1,6 +1,5 @@
 
-def draw(grid, pos, GRID_SIZE, draw_color):
-    x, y = pos
+def draw(grid, x, y, GRID_SIZE, draw_color):
 
     row = int(y // GRID_SIZE)
     col = int(x // GRID_SIZE)

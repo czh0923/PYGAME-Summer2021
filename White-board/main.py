@@ -10,10 +10,11 @@ print(ROWS, '*', ROWS)
 def main():
     run = True
     WIN.fill(WHITE)
-    draw_color = BLUE
+    draw_color = BLACK
     grid = []
     clock = pygame.time.Clock()
     build_grid(grid, ROWS, COLS, WHITE)
+    COLOR_BUTTON = {}
 
     while run:
         clock.tick(FPS)
@@ -25,8 +26,19 @@ def main():
 
             if pygame.mouse.get_pressed()[0]:
                 pos = pygame.mouse.get_pos()
+                x, y = pos
 
-                draw(grid, pos, GRID_SIZE, draw_color)
+                try:
+                    draw(grid, x, y, GRID_SIZE, draw_color)
+                except IndexError:
+                    action = handle_button(x, y, COLOR_BUTTON, WHITE, COLORS)
+                    if action == 1: # clear
+                        print('Cleared')
+                        grid = clear_grid(grid, ROWS, COLS, WHITE)
+                    elif action == 2:
+                        pass # save
+                    else:
+                        draw_color = action
 
         draw_grid(grid, WIN, ROWS, COLS, GRID_SIZE)
 
@@ -34,6 +46,8 @@ def main():
             draw_grid_lines(WIN, ROWS, COLS, BLACK, WIDTH, HEIGHT, GRID_SIZE)
 
         draw_toolbar(WIN, WHITE, WIDTH, TOOLBAR_HEIGHT)
+
+        draw_buttons(WIN, WIDTH, HEIGHT, TOOLBAR_HEIGHT, BUTTON_SIZE, COLORS, BUTTON_NUM, TEXT_FONT, COLOR_BUTTON)
 
         pygame.display.update()
 
