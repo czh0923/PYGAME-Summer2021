@@ -1,3 +1,4 @@
+from utils.settings import BUTTON_MARGRIN
 import pygame
 
 def draw_toolbar(WIN, COLOR, WIDTH, TOOLBAR_HEIGHT):
@@ -12,7 +13,7 @@ def draw_color_button(WIN, COLOR, PosX, PosY, size):
 def draw_text_button(WIN, COLOR, PosX, PosY, size):
     return pygame.draw.rect(WIN, COLOR, (PosX, PosY, size, size), 2)
     
-def draw_buttons(WIN, WIDTH, HEIGHT, TOOLBAR_HEIGHT, BUTTON_SIZE, COLORS, BUTTON_NUM, TEXT_FONT, COLOR_BUTTON):
+def draw_buttons(WIN, WIDTH, HEIGHT, TOOLBAR_HEIGHT, BUTTON_SIZE, COLORS, BUTTON_NUM, TEXT_FONT, COLOR_BUTTON, BUTTON_MARGIN):
     
     PosY = HEIGHT - TOOLBAR_HEIGHT / 2 - BUTTON_SIZE / 2
     for i in range(len(COLORS) - 1): # don't draw a white button
@@ -20,16 +21,15 @@ def draw_buttons(WIN, WIDTH, HEIGHT, TOOLBAR_HEIGHT, BUTTON_SIZE, COLORS, BUTTON
         COLOR_BUTTON[i] = rect
 
     BLACK = COLORS[0]
-    WHITE = COLORS[4]
 
-    text = ['ERASE', 'CLEAR', 'SAVE']
-    for i in range(3): 
+    text = ['ERASE', 'CLEAR', 'SAVE', 'LOAD']
+    for i in range(4): 
         j = i + 4    # j = 4, 5, 6 
-        rect = draw_text_button(WIN, BLACK, 10 + j * (WIDTH / BUTTON_NUM), PosY, BUTTON_SIZE)
+        rect = draw_text_button(WIN, BLACK, BUTTON_MARGRIN + j * (WIDTH / BUTTON_NUM), PosY, BUTTON_SIZE)
         COLOR_BUTTON[j] = rect
             
         text_surface = TEXT_FONT.render(text[i], 1, BLACK)
-        WIN.blit(text_surface, (10 + j * (WIDTH / BUTTON_NUM) + BUTTON_SIZE / 2 - text_surface.get_width() / 2,
+        WIN.blit(text_surface, (BUTTON_MARGRIN + j * (WIDTH / BUTTON_NUM) + BUTTON_SIZE / 2 - text_surface.get_width() / 2,
                                 PosY + BUTTON_SIZE / 2 - text_surface.get_height() / 2))
 
 
@@ -41,5 +41,7 @@ def handle_button(x, y, COLOR_BUTTON, WHITE, COLORS):
                 return 1
             elif i == 6: # SAVE
                 return 2
+            elif i == 7: # LOAD
+                return 3
             else:
                 return COLORS[i]
