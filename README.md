@@ -1,6 +1,6 @@
 # PYGAME-Summer2021
 
-Uh-oh: https://www.youtube.com/watch?v=jO6qQDNa2UY
+Uh-oh: space craft game
 
-White-board: https://www.youtube.com/watch?v=N20eXcfyQ_4
+White-board: painting canvas
 
